@@ -1,13 +1,28 @@
-function makeTransaction(quantity, pricePerDroid, customerCredits) {
-    const totalPrice = quantity * pricePerDroid;
-    if (totalPrice > customerCredits) {
-        return "Insufficient funds!";
-    } else {
-        return `You ordered ${quantity} droids worth ${totalPrice} credits!`
+function getShippingCost(country) { 
+    const lowerCaseCountry = country.toLowerCase();
+    switch (lowerCaseCountry) {
+        case "china":
+            return "Shipping to China will cost 100 credits";    
+            break;
+        case "chile":
+            return "Shipping to Chile will cost 250 credits";            
+            break;
+        case "australia":
+            return "Shipping to Australia will cost 170 credits";            
+            break;
+        case "jamaica":
+            return "Shipping to Jamaica will cost 120 credits";            
+            break;        
+        default:
+            return "Sorry, there is no delivery to your country";            
+            break;
     }
+
 }
-console.log(makeTransaction(5, 3000, 23000));
-console.log(makeTransaction(3, 1000, 15000));
-console.log(makeTransaction(10, 5000, 8000));
-console.log(makeTransaction(8, 2000, 10000));
-console.log(makeTransaction(10, 500, 5000));
+
+console.log(getShippingCost("Australia")); // "Shipping to Australia will cost 170 credits"
+console.log(getShippingCost("Germany")); // "Sorry, there is no delivery to your country"
+console.log(getShippingCost("China")); // "Shipping to China will cost 100 credits"
+console.log(getShippingCost("Chile")); // "Shipping to Chile will cost 250 credits"
+console.log(getShippingCost("Jamaica")); // "Shipping to Jamaica will cost 120 credits"
+console.log(getShippingCost("Sweden")); // "Sorry, there is no delivery to your country"
